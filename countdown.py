@@ -3,7 +3,7 @@ import time
 
 def countdown():
     time_format = input(
-        'Zeitformat eingeben (Sekunden/Minuten/Stunden): ')
+        'Zeitformat eingeben (Sekunden/Minuten/Stunden/Benutzerdefiniert): ')
     if time_format == 'Sekunden':
         t = int(input('Zeit in Sekunden eingeben: '))
     elif time_format == 'Minuten':
@@ -12,6 +12,11 @@ def countdown():
     elif time_format == 'Stunden':
         t = int(input('Zeit in Stunden eingeben: '))
         t *= 60 * 60
+    elif time_format == 'Benutzerdefiniert':
+        hours = int(input('Stunden eingeben: '))
+        minutes = int(input('Minuten eingeben: '))
+        seconds = int(input('Sekunden eingeben: '))
+        t = hours * 60 * 60 + minutes * 60 + seconds
     else:
         print('Ungültiges Zeitformat!')
         return
