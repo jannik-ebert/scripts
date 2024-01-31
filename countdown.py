@@ -1,9 +1,10 @@
 import time
+from datetime import datetime
 
 
 def countdown():
     time_format = input(
-        'Zeitformat eingeben (Sekunden/Minuten/Stunden/Benutzerdefiniert): ')
+        'Zeitformat eingeben (Sekunden/Minuten/Stunden/Uhrzeit/Benutzerdefiniert): ')
     if time_format == 'Sekunden':
         t = int(input('Zeit in Sekunden eingeben: '))
     elif time_format == 'Minuten':
@@ -12,6 +13,19 @@ def countdown():
     elif time_format == 'Stunden':
         t = int(input('Zeit in Stunden eingeben: '))
         t *= 60 * 60
+    elif time_format == 'Uhrzeit':
+        end_time = input('Bis wann soll der Timer laufen? (Format: hh:mm) ')
+        end_time = end_time.split(':')
+        end_time = [int(i) for i in end_time]
+        end_time_seconds = end_time[0] * 3600 + end_time[1] * 60
+
+        now = datetime.now()
+        current_date = now.date()
+        start_of_day = datetime.combine(current_date, datetime.min.time())
+        time_difference = now - start_of_day
+        seconds_passed = time_difference.total_seconds()
+
+        t = end_time_seconds - int(seconds_passed)
     elif time_format == 'Benutzerdefiniert':
         hours = int(input('Stunden eingeben: '))
         minutes = int(input('Minuten eingeben: '))
